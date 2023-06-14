@@ -1,0 +1,16 @@
+setgridsize({nx},1,1)
+setcellsize({dx},{dx},{dx})
+OutputFormat = OVF2_TEXT
+enabledemag = false
+Aex = {A}
+Msat = {Ms}
+alpha = {alpha}
+
+Bz := {Bz}
+B_ext = vector(0,0,{Bz})
+defregion(1,rect(2*{dx},inf))
+B_ext.setregion(1, vector(0.01 * sinc( 2*pi*{fmax}*(t-{T}/2)), 0, {Bz}))
+
+m = uniform(0,0,1) 
+autosave(m,{dt})
+run({T})

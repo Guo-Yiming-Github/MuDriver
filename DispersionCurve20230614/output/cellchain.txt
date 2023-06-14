@@ -1,0 +1,16 @@
+setgridsize(1024,1,1)
+setcellsize(4e-09,4e-09,4e-09)
+OutputFormat = OVF2_TEXT
+enabledemag = false
+Aex = 1.3e-11
+Msat = 800000
+alpha = 0.05
+
+Bz := 0.2
+B_ext = vector(0,0,0.2)
+defregion(1,rect(2*4e-09,inf))
+B_ext.setregion(1, vector(0.01 * sinc( 2*pi*40000000000*(t-1e-08/2)), 0, 0.2))
+
+m = uniform(0,0,1) 
+autosave(m,1.25e-11)
+run(1e-08)
